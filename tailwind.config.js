@@ -6,7 +6,13 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-  },
-  plugins: [],
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        instrument: ['"Instrument Serif"', "serif"],
+        gupter: ['"Gupter"', "serif"],
+        dm: ['"DM Sans"', "sans-serif"],
+      }
+    }
+  }
 };

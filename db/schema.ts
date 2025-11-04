@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, integer, numeric } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -53,6 +53,55 @@ export const verification = pgTable("verification", {
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
   expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const faculty = pgTable("faculty", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  department: text("department").notNull(),
+  designation: text("designation").notNull(),
+  qualification: text("qualification"),
+  experience: integer("experience"),
+  phone: text("phone"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const company = pgTable("company", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  industry: text("industry").notNull(),
+  website: text("website"),
+  location: text("location"),
+  contactPerson: text("contact_person"),
+  contactEmail: text("contact_email"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const placement = pgTable("placement", {
+  id: text("id").primaryKey(),
+  studentName: text("student_name").notNull(),
+  studentId: text("student_id").notNull(),
+  companyId: text("company_id")
+    .notNull()
+    .references(() => company.id, { onDelete: "cascade" }),
+  packageAmount: numeric("package_amount", { precision: 10, scale: 2 }).notNull(),
+  position: text("position").notNull(),
+  placementDate: timestamp("placement_date").notNull(),
+  department: text("department").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
