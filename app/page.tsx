@@ -43,7 +43,12 @@ export function LoginForm({
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                 </div>
-                <Input id="password" type="password" placeholder="password123" required />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="password123"
+                  required
+                />
               </Field>
               <Field>
                 <Button type="submit">Login</Button>
@@ -53,7 +58,7 @@ export function LoginForm({
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center">
-        This is a demo-dashboard currently in development. 
+        This is a demo-dashboard currently in development.
       </FieldDescription>
     </div>
   );
