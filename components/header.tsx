@@ -1,25 +1,35 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { TabButton } from "@/components/TabButton"
-import UploadModal from "@/components/upload-modal"
-import { LogIn, LogOut, Shield, Download } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "./ui/menubar"
-import type { ParsedPlacementData } from "@/app/actions/parse-file"
+import { useState } from "react";
+import { TabButton } from "@/components/TabButton";
+import UploadModal from "@/components/upload-modal";
+import { LogIn, LogOut, Shield, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "./ui/menubar";
+import type { ParsedPlacementData } from "@/app/actions/parse-file";
 
 interface HeaderProps {
-  activeTab: string
-  onTabChange: (tab: string) => void
-  onDataUpload?: (data: ParsedPlacementData) => void
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+  onDataUpload?: (data: ParsedPlacementData) => void;
 }
 
-export default function Header({ activeTab, onTabChange, onDataUpload }: HeaderProps) {
-  const [uploadModalOpen, setUploadModalOpen] = useState(false)
+export default function Header({
+  activeTab,
+  onTabChange,
+  onDataUpload,
+}: HeaderProps) {
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   const handleUploadSuccess = (data: ParsedPlacementData) => {
-    onDataUpload?.(data)
-  }
+    onDataUpload?.(data);
+  };
 
   return (
     <>
@@ -30,7 +40,9 @@ export default function Header({ activeTab, onTabChange, onDataUpload }: HeaderP
             <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
               <span className="text-primary-foreground font-bold">📋</span>
             </div>
-            <span className="text-xl font-bold text-foreground">PlacementLog</span>
+            <span className="text-xl font-bold text-foreground">
+              PlacementLog
+            </span>
           </div>
 
           {/* Center: Tab Navigation */}
@@ -66,11 +78,6 @@ export default function Header({ activeTab, onTabChange, onDataUpload }: HeaderP
               Get Data
             </Button>
 
-            <Button variant="ghost" size="sm" className="gap-2">
-              <LogIn className="w-4 h-4" />
-              Login
-            </Button>
-
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger className="gap-2">
@@ -96,5 +103,5 @@ export default function Header({ activeTab, onTabChange, onDataUpload }: HeaderP
         onUploadSuccess={handleUploadSuccess}
       />
     </>
-  )
+  );
 }
