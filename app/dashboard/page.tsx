@@ -7,10 +7,17 @@ import OverallView from "@/components/overall-view"
 import BranchView from "@/components/branch-view"
 import CompanyView from "@/components/company-view"
 import Footer from "@/components/footer"
+import { useSessionStorage } from "@/hooks/use-session-storage"
+import type { ParsedPlacementData } from "@/app/actions/parse-file"
 
 export default function PlacementStats() {
   const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState("overall")
+
+  const [placementData, setPlacementData, isDataLoaded] = useSessionStorage<ParsedPlacementData | null>(
+    "placementData",
+    null,
+  )
 
   useEffect(() => {
     const tabParam = searchParams.get("tab")
@@ -25,9 +32,13 @@ export default function PlacementStats() {
     window.history.replaceState({}, "", newUrl)
   }
 
+  const handleDataUpload = (data: ParsedPlacementData) => {
+    setPlacementData(data)
+  }
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Header activeTab={activeTab} onTabChange={handleTabChange} />
+      <Header activeTab={activeTab} onTabChange={handleTabChange} onDataUpload={handleDataUpload} />
 
       <main className="flex-1">
         <div className="max-w-7xl mx-auto px-4 py-8">
@@ -40,11 +51,11 @@ export default function PlacementStats() {
             </p>
           </div>
 
-          {/* Conditional view rendering */}
+          {/* Conditional view rendering with data passed */}
           <div className="transition-opacity duration-300">
-            {activeTab === "overall" && <OverallView />}
-            {activeTab === "branch" && <BranchView />}
-            {activeTab === "company" && <CompanyView />}
+            {activeTab === "overall" && isDataLoaded && <OverallView data={placementData} />}
+            {activeTab === "branch" && isDataLoaded && <BranchView data={placementData} />}
+            {activeTab === "company" && isDataLoaded && <CompanyView data={placementData} />}
           </div>
         </div>
       </main>

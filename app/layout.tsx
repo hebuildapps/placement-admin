@@ -1,5 +1,6 @@
 import "./globals.css";
 import React from "react";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Dean Dashboard",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster position="top-right" />
+      </body>
     </html>
   );
 }

@@ -2,9 +2,15 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts"
-import { branchData } from "@/lib/data"
+import { branchData as mockBranchData } from "@/lib/data"
+import type { ParsedPlacementData } from "@/app/actions/parse-file"
 
-export default function BranchView() {
+interface BranchViewProps {
+  data: ParsedPlacementData | null
+}
+
+export default function BranchView({ data }: BranchViewProps) {
+  const branchData = data?.branchData || mockBranchData
   const totalSelections = branchData.reduce((sum, b) => sum + b.value, 0)
 
   return (
@@ -14,6 +20,7 @@ export default function BranchView() {
         <p className="text-muted-foreground">Total selections by branch: {totalSelections}</p>
       </div>
 
+      {/* Donut Chart Card with Center Text Overlay */}
       <Card>
         <CardHeader>
           <CardTitle>Placement Distribution by Branch</CardTitle>

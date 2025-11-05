@@ -1,59 +1,43 @@
-"use client";
+"use client"
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
-import { companyWiseData, companyData } from "@/lib/data";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import { companyWiseData as mockCompanyWiseData, companyData as mockCompanyData } from "@/lib/data"
+import type { ParsedPlacementData } from "@/app/actions/parse-file"
 
-export default function CompanyView() {
-  // Transform data for company-wise view (by branch breakdown)
+interface CompanyViewProps {
+  data: ParsedPlacementData | null
+}
+
+export default function CompanyView({ data }: CompanyViewProps) {
+  const companyData = data?.companyData || mockCompanyData
+  const companyWiseData = data?.companyWiseData || mockCompanyWiseData
+
   const branchColors: { [key: string]: string } = {
     CSE: "#3B82F6",
     ECE: "#06B6D4",
     EEE: "#10B981",
     MECH: "#F59E0B",
     CIVIL: "#EF4444",
-  };
+  }
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">
-          Company-wise Placement Details
-        </h2>
-        <p className="text-muted-foreground">
-          Detailed breakdown of placements by company and branch
-        </p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Company-wise Placement Details</h2>
+        <p className="text-muted-foreground">Detailed breakdown of placements by company and branch</p>
       </div>
 
       {/* Overall Company Bar Chart */}
       <Card>
         <CardHeader>
           <CardTitle>Total Placements by Company</CardTitle>
-          <CardDescription>
-            Number of students placed in each company
-          </CardDescription>
+          <CardDescription>Number of students placed in each company</CardDescription>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={companyData}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="var(--color-border)"
-              />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
               <XAxis dataKey="name" stroke="var(--color-muted-foreground)" />
               <YAxis stroke="var(--color-muted-foreground)" />
               <Tooltip
@@ -74,9 +58,7 @@ export default function CompanyView() {
           <Card key={company.company}>
             <CardHeader>
               <CardTitle>{company.company}</CardTitle>
-              <CardDescription>
-                Total: {company.total} students placed
-              </CardDescription>
+              <CardDescription>Total: {company.total} students placed</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -85,25 +67,20 @@ export default function CompanyView() {
                     count > 0 && (
                       <div key={branch}>
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium text-foreground">
-                            {branch}
-                          </span>
-                          <span className="text-sm text-muted-foreground">
-                            {count}
-                          </span>
+                          <span className="text-sm font-medium text-foreground">{branch}</span>
+                          <span className="text-sm text-muted-foreground">{count}</span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
                           <div
                             className="rounded-full h-2"
                             style={{
                               width: `${(count / company.total) * 100}%`,
-                              backgroundColor:
-                                branchColors[branch] || "#9CA3AF",
+                              backgroundColor: branchColors[branch] || "#9CA3AF",
                             }}
                           />
                         </div>
                       </div>
-                    )
+                    ),
                 )}
               </div>
             </CardContent>
@@ -111,5 +88,5 @@ export default function CompanyView() {
         ))}
       </div>
     </div>
-  );
+  )
 }
