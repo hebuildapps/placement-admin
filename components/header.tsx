@@ -26,6 +26,7 @@ export default function Header({
   onDataUpload,
 }: HeaderProps) {
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   const handleUploadSuccess = (data: ParsedPlacementData) => {
     onDataUpload?.(data);
@@ -76,6 +77,61 @@ export default function Header({
             >
               <Download className="w-4 h-4" />
               Get Data
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={async () => {
+                // dynamically import html2canvas only on demand
+                if (exporting) return;
+                setExporting(true);
+                try {
+                  const mod = await import("html2canvas");
+                  const html2canvas = (mod && (mod as any).default) || mod;
+
+                  const docEl = document.documentElement;
+                  const width = Math.max(
+                    docEl.scrollWidth,
+                    docEl.clientWidth,
+                    document.body ? document.body.scrollWidth : 0
+                  );
+                  const height = Math.max(
+                    docEl.scrollHeight,
+                    docEl.clientHeight,
+                    document.body ? document.body.scrollHeight : 0
+                  );
+
+                  const canvas = await html2canvas(document.documentElement, {
+                    width,
+                    height,
+                    windowWidth: width,
+                    windowHeight: height,
+                    useCORS: true,
+                    scale: 1,
+                  });
+
+                  const dataUrl = canvas.toDataURL("image/png");
+                  const link = document.createElement("a");
+                  link.href = dataUrl;
+                  link.download = `placementlog-fullpage-${new Date()
+                    .toISOString()
+                    .replace(/[:.]/g, "-")}.png`;
+                  // trigger download
+                  link.click();
+                } catch (err) {
+                  // keep simple: log to console; UI-level error handling could be added
+                  // eslint-disable-next-line no-console
+                  console.error("Export failed", err);
+                } finally {
+                  setExporting(false);
+                }
+              }}
+              disabled={exporting}
+            >
+              <Download className="w-4 h-4" />
+              {exporting ? "Exporting..." : "Export results"}
             </Button>
 
             <Menubar>
