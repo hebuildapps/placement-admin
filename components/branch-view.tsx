@@ -14,7 +14,6 @@ export default function BranchView() {
         <p className="text-muted-foreground">Total selections by branch: {totalSelections}</p>
       </div>
 
-      {/* Donut Chart Card with Center Text Overlay */}
       <Card>
         <CardHeader>
           <CardTitle>Placement Distribution by Branch</CardTitle>

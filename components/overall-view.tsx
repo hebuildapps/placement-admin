@@ -1,7 +1,13 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { TrendingUp } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   BarChart,
   Bar,
@@ -14,25 +20,38 @@ import {
   Pie,
   Cell,
   Legend,
-} from "recharts"
-import { kpiData, companyData, salaryData, topRecruitersByBranch, branchData } from "@/lib/data"
+} from "recharts";
+import {
+  kpiData,
+  companyData,
+  salaryData,
+  topRecruitersByBranch,
+  branchData,
+} from "@/lib/data";
 
 export default function OverallView() {
   return (
     <>
-      {/* KPI Cards - 4 column grid matching screenshot */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  mb-8">
         {kpiData.map((kpi, idx) => (
           <Card key={idx}>
             <CardContent className="pt-6">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">{kpi.title}</p>
-                  <h3 className="text-2xl font-bold text-foreground">{kpi.value}</h3>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    {kpi.title}
+                  </p>
+                  <h3 className="text-2xl font-bold text-foreground">
+                    {kpi.value}
+                  </h3>
                 </div>
-                {kpi.trend === "up" && <TrendingUp className="w-5 h-5 text-green-600" />}
+                {kpi.trend === "up" && (
+                  <TrendingUp className="w-5 h-5 text-green-600" />
+                )}
               </div>
-              <p className="text-xs text-green-600 font-medium mt-2">{kpi.delta} from last year</p>
+              <p className="text-xs text-green-600 font-medium mt-2">
+                {kpi.delta} from last year
+              </p>
             </CardContent>
           </Card>
         ))}
@@ -49,7 +68,10 @@ export default function OverallView() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={companyData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--color-border)"
+                />
                 <XAxis dataKey="name" stroke="var(--color-muted-foreground)" />
                 <YAxis stroke="var(--color-muted-foreground)" />
                 <Tooltip
@@ -86,7 +108,12 @@ export default function OverallView() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: "white", border: "1px solid var(--color-border)" }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "white",
+                    border: "1px solid var(--color-border)",
+                  }}
+                />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
@@ -107,8 +134,12 @@ export default function OverallView() {
               {branchData.map((branch) => (
                 <div key={branch.name}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-foreground">{branch.name}</span>
-                    <span className="text-sm text-muted-foreground">{branch.value} students</span>
+                    <span className="font-medium text-foreground">
+                      {branch.name}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      <b>{branch.value} students</b>
+                    </span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div
@@ -119,6 +150,7 @@ export default function OverallView() {
                       }}
                     />
                   </div>
+                  <div className="border-b  border-black py-2 w-full"></div>
                 </div>
               ))}
             </div>
@@ -134,12 +166,21 @@ export default function OverallView() {
           <CardContent>
             <div className="space-y-3">
               {topRecruitersByBranch.map((recruiter, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                <div
+                  key={idx}
+                  className="flex items-center justify-between p-3 bg-muted rounded-lg"
+                >
                   <div>
-                    <p className="font-medium text-foreground">{recruiter.company}</p>
-                    <p className="text-xs text-muted-foreground">{recruiter.students} offers</p>
+                    <p className="font-medium text-foreground">
+                      {recruiter.company}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {recruiter.students} offers
+                    </p>
                   </div>
-                  <span className="font-semibold text-primary">{recruiter.avgPackage}</span>
+                  <span className="font-semibold text-primary">
+                    {recruiter.avgPackage}
+                  </span>
                 </div>
               ))}
             </div>
@@ -147,5 +188,5 @@ export default function OverallView() {
         </Card>
       </div>
     </>
-  )
+  );
 }

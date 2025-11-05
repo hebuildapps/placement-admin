@@ -14,7 +14,6 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
   return (
     <header className="border-b border-border bg-card">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
             <span className="text-primary-foreground font-bold">📋</span>
@@ -22,7 +21,6 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
           <span className="text-xl font-bold text-foreground">Dean's Dashboard &#9656; Placement </span>
         </div>
 
-        {/* Center: Tab Navigation */}
         <div className="flex items-center gap-3">
           <div className="flex space-x-0 bg-gray-100 rounded-lg overflow-hidden">
             <TabButton
@@ -43,11 +41,10 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
           </div>
         </div>
 
-        {/* Right: Actions */}
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" className="gap-2">
             <LogIn className="w-4 h-4" />
-            Login
+            Get Data
           </Button>
 
           <Menubar>
