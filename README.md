@@ -1,7 +1,6 @@
+> [!CAUTION]
+> Use 'Admin'.
 
-> [! WARNING]
-> Don't use 'Dean', any possible places. Use 'Admin'.
-> Never.
 
 # Factors we all can think up of
 
