@@ -4,11 +4,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="text-center">
           <p className="text-foreground font-medium mb-4">
-            Dean's Dashboard - Visualize data within a website.
+            Admin's Dashboard - Visualize data within a website.
           </p>
           <div className="flex gap-6 justify-center text-sm">
             <a
-              href="https://github.com/hebuildapps/dean-dashboard"
+              href="https://github.com/hebuildapps/placement-admin"
               className="  text-muted-foreground hover:text-foreground"
             >
               Source Code

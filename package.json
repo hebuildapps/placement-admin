@@ -1,7 +1,7 @@
 {
-  "name": "dean-dashboard-web",
+  "name": "admin-web",
   "version": "1.0.0",
-  "description": "Dean Dashboard web app",
+  "description": "Admin Dashboard web app",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hebuildapps/dean-dashboard.git"
+    "url": "git+https://github.com/hebuildapps/placement-admin.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hebuildapps/dean-dashboard/issues"
+    "url": "https://github.com/hebuildapps/placement-admin/issues"
   },
-  "homepage": "https://github.com/hebuildapps/dean-dashboard#readme",
+  "homepage": "https://github.com/hebuildapps/placement-admin#readme",
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
     "@radix-ui/react-dialog": "^1.1.15",

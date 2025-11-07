@@ -26,7 +26,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
-  const [email, setEmail] = useState("dean@mitwpu.edu.in");
+  const [email, setEmail] = useState("admin@mitwpu.edu.in");
   const [password, setPassword] = useState("password123");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -78,7 +78,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="dean@mitwpu.edu.in"
+                  placeholder="admin@mitwpu.edu.in"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required

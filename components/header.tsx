@@ -41,9 +41,7 @@ export default function Header({
             <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
               <span className="text-primary-foreground font-bold">📋</span>
             </div>
-            <span className="text-xl font-bold text-foreground">
-              PlacementLog
-            </span>
+            <span className="text-xl font-bold text-foreground">Admin</span>
           </div>
 
           {/* Center: Tab Navigation */}

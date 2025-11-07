@@ -3,7 +3,7 @@ import React from "react";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Dean Dashboard",
+  title: "Admin Dashboard",
   description: "Admin dashboard",
 };
 
