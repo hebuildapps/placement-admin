@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth";
 export const signIn = async () => {
     await auth.api.signInEmail({
     body: {
-        email: "admin@mitwpu.edu.in",
+        email: "admin@school.edu.in",
         password: "password123",
     }
 })
