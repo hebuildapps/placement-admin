@@ -26,7 +26,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@mitwpu.edu.in");
+  const [email, setEmail] = useState("admin@school.edu.in");
   const [password, setPassword] = useState("password123");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -65,7 +65,6 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <img src="../mitwpu-logo.png" alt="MITWPU Logo" className="mx-auto" />
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
@@ -78,7 +77,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@mitwpu.edu.in"
+                  placeholder="admin@school.edu.in"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required

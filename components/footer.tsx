@@ -13,18 +13,6 @@ export default function Footer() {
             >
               Source Code
             </a>
-            <a
-              href="https://mitwpu.edu.in"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              College Website
-            </a>
-            <a
-              href="#feedback"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              Feedback & Suggestions
-            </a>
           </div>
         </div>
       </div>
