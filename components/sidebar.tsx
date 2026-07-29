@@ -196,7 +196,7 @@ export default function Sidebar({
     <>
       <aside
         className={`
-          flex flex-col h-screen border-r border-r-transparent bg-background pr-3
+          flex flex-col h-screen border-r border-r-transparent bg-background mr-3
           transition-all duration-300 ease-in-out flex-shrink-0
           hover:border-r-border
           ${collapsed ? "w-[64px]" : "w-[260px]"}
@@ -204,7 +204,7 @@ export default function Sidebar({
       >
         {/* ── Logo ──────────────────────────────────────────── */}
         <div
-          className={`flex items-center gap-2.5 rounded-lg border border-border-accent/20 px-3 py-3 mb-4 ${collapsed ? "justify-center px-0" : ""}`}
+          className={`flex items-center gap-2.5 rounded-lg bg-[#303f3f] border border-[#5e6e6e] px-3 py-3 m-4 ${collapsed ? "justify-center px-0 bg-background" : ""}`}
         >
           <div className="w-7 h-7 rounded-lg bg-transparent flex items-center justify-center flex-shrink-0">
             <svg
@@ -224,7 +224,7 @@ export default function Sidebar({
 
         {/* ── Nav group label ────────────────────────────────── */}
         {!collapsed && (
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground pt-4 px-4 mb-1">
+          <p className="text-[9px] font-semibold text-muted-foreground pt-4 px-4 mb-1">
             Quick access
           </p>
         )}
@@ -248,7 +248,7 @@ export default function Sidebar({
                   ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
                   ${
                     effectiveActive
-                      ? "bg-sidebar brightness-115 text-foreground"
+                      ? "bg-[#4e5e5e] brightness-115 text-foreground"
                       : "text-foreground hover:bg-card/60 hover:text-foreground"
                   }
                 `}
@@ -317,16 +317,13 @@ export default function Sidebar({
           </button>
         </div>
 
-        {/* ── Separator ─────────────────────────────────────── */}
-        <div className="mx-3 my-2 border-t border-border/60" />
-
         {/* ── Account selector ──────────────────────────────── */}
-        <div className="relative px-2 pb-3" ref={dropdownRef}>
+        <div className="relative px-2 pb-3 pt-4" ref={dropdownRef}>
           <button
             onClick={() => setAccountOpen((v) => !v)}
             title={collapsed ? "Admin" : undefined}
             className={`
-              w-full flex items-center gap-2.5 rounded-lg border border-border-accent border-brightness-125 hover:bg-muted/60 transition-all duration-150 cursor-pointer
+              w-full flex items-center gap-2.5 rounded-lg border bg-[#1f2d2d] border-[#5e6e6e] hover:bg-muted/60 transition-all duration-150 cursor-pointer
               ${collapsed ? "justify-center px-0 py-2" : "px-3 py-2"}
             `}
           >
@@ -339,10 +336,10 @@ export default function Sidebar({
                 </div>
                 <div className="flex-1 text-left min-w-0">
                   <p className="text-xs font-semibold text-foreground leading-none truncate">
-                    Admin
+                    Demo
                   </p>
                   <p className="text-[10px] text-foreground mt-0.5 truncate">
-                    admin@placementlog.dev
+                    demo@placementlog
                   </p>
                 </div>
                 <IconCaretUpDown className="w-3.5 h-3.5 text-foreground flex-shrink-0" />
@@ -354,7 +351,7 @@ export default function Sidebar({
           {accountOpen && (
             <div
               className={`
-                absolute bottom-full mb-1 z-50 bg-card/20 border border-border-accent shadow-lg rounded-xl overflow-hidden
+                absolute bottom-full mb-1 z-50 bg-card/20 border border-bdr-accent shadow-lg rounded-xl overflow-hidden
                 ${collapsed ? "left-full ml-2 w-40" : "left-2 right-2"}
               `}
             >
