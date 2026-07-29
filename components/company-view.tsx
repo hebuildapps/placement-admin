@@ -17,7 +17,6 @@ interface CompanyViewProps {
   data: ParsedPlacementData | null;
 }
 
-// Custom tooltip
 function ChartTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
@@ -32,7 +31,6 @@ function ChartTooltip({ active, payload, label }: any) {
   );
 }
 
-// Branch colour tokens (design-token safe)
 const branchPalette: Record<string, string> = {
   CSE: "hsl(210 70% 55%)",
   ECE: "hsl(185 65% 45%)",
@@ -49,7 +47,6 @@ export default function CompanyView({ data }: CompanyViewProps) {
 
   return (
     <div className="space-y-5">
-      {/* ── Overall company bar chart ──────────────────────────────── */}
       <div className="bg-card border border-border/50 rounded-xl p-5">
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-foreground">
@@ -87,7 +84,6 @@ export default function CompanyView({ data }: CompanyViewProps) {
         </ResponsiveContainer>
       </div>
 
-      {/* ── Per-company breakdown grid ────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {companyWiseData.map((company) => (
           <div

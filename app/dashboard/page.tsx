@@ -9,7 +9,6 @@ import CompanyView from "@/components/company-view";
 import { useSessionStorage } from "@/hooks/use-session-storage";
 import type { ParsedPlacementData } from "@/app/actions/parse-file";
 
-// Phosphor panel toggle icons
 function IconSidebarSimple({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 256 256" fill="currentColor">
@@ -57,7 +56,6 @@ export default function PlacementStats() {
 
   return (
     <div className="flex h-screen bg-background overflow-hidden">
-      {/* ── Left Sidebar ─────────────────────────────────────────── */}
       <Sidebar
         activeTab={activeTab}
         onTabChange={handleTabChange}
@@ -66,16 +64,10 @@ export default function PlacementStats() {
         onCollapsedChange={setCollapsed}
       />
 
-      {/* ── Main area ────────────────────────────────────────────── */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Inner scrollable content with padding */}
         <div className="flex-1 overflow-y-auto p-3.5 pl-0 md:p-3.5 md:pl-0">
-          {/* Rounded main content shell */}
           <div className="min-h-full rounded-2xl bg-card border border-border/50 shadow-sm flex flex-col">
-
-            {/* ── Page header bar ─────────────────────────────────── */}
             <div className="flex items-center gap-4 px-6 py-4 border-b border-border/40">
-              {/* Collapse toggle */}
               <button
                 onClick={() => setCollapsed((v) => !v)}
                 className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 cursor-pointer flex-shrink-0"
@@ -84,7 +76,6 @@ export default function PlacementStats() {
                 <IconSidebarSimple className="w-4 h-4" />
               </button>
 
-              {/* Breadcrumb / page title */}
               <div className="flex items-center gap-2 flex-1 min-w-0">
                 <span className="text-xs text-muted-foreground">PlacementLog</span>
                 <span className="text-xs text-muted-foreground/50">/</span>
@@ -94,9 +85,7 @@ export default function PlacementStats() {
               </div>
             </div>
 
-            {/* ── Content area ──────────────────────────────────── */}
             <div className="flex-1 px-6 py-6">
-              {/* Section heading */}
               <div className="mb-6">
                 <h1 className="text-xl font-semibold text-foreground tracking-tight">
                   {currentMeta.title}
@@ -106,7 +95,6 @@ export default function PlacementStats() {
                 </p>
               </div>
 
-              {/* Tab content */}
               <div className="transition-opacity duration-200">
                 {activeTab === "overall" && isDataLoaded && (
                   <OverallView data={placementData} />
@@ -120,10 +108,16 @@ export default function PlacementStats() {
               </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────── */}
             <div className="px-6 py-3 border-t border-border/30 flex items-center justify-between">
               <p className="text-xs text-muted-foreground">
-                PlacementLog — Admin Dashboard
+                <a
+                  href="https://heramb.icu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-muted-foreground transition-colors"
+                >
+                  heramb.icu
+                </a> site
               </p>
               <a
                 href="https://github.com/hebuildapps/placement-admin"

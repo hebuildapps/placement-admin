@@ -1,12 +1,10 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import UploadModal from "@/components/upload-modal";
 import { useTheme } from "@/components/theme-provider";
 import type { ParsedPlacementData } from "@/app/actions/parse-file";
 
-// ─── Phosphor icon SVG components ──────────────────────────────────────────
 function IconSquaresFour({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 256 256" fill="currentColor">
@@ -87,15 +85,6 @@ function IconCaretUpDown({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function IconShield({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 256 256" fill="currentColor">
-      <path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208Z" />
-    </svg>
-  );
-}
-
-// ─── Nav item type ──────────────────────────────────────────────────────────
 interface NavItem {
   id: string;
   label: string;
@@ -130,7 +119,6 @@ const navItems: NavItem[] = [
   },
 ];
 
-// ─── Props ──────────────────────────────────────────────────────────────────
 interface SidebarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
@@ -153,7 +141,6 @@ export default function Sidebar({
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click
   useEffect(() => {
     function handle(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -196,15 +183,20 @@ export default function Sidebar({
     <>
       <aside
         className={`
-          flex flex-col h-screen border-r border-r-transparent bg-background mr-3
+          flex flex-col h-screen border-r border-r-transparent bg-sidebar dark:bg-background mr-3
           transition-all duration-300 ease-in-out flex-shrink-0
           hover:border-r-border
           ${collapsed ? "w-[64px]" : "w-[260px]"}
         `}
       >
-        {/* ── Logo ──────────────────────────────────────────── */}
         <div
-          className={`flex items-center gap-2.5 rounded-lg bg-[#303f3f] border border-[#5e6e6e] px-3 py-3 m-4 ${collapsed ? "justify-center px-0 bg-background" : ""}`}
+          className={`
+        flex items-center gap-2.5 rounded-lg
+        ${collapsed
+          ? "bg-transparent border-transparent justify-center px-5 py-1.5 m-4"
+          : "bg-[#ede9e6] dark:bg-[#303f3f] px-3 py-3 m-4"}
+        border border-[#cfc6bf] dark:border-[#5e6e6e]
+      `}
         >
           <div className="w-7 h-7 rounded-lg bg-transparent flex items-center justify-center flex-shrink-0">
             <svg
@@ -222,18 +214,15 @@ export default function Sidebar({
           )}
         </div>
 
-        {/* ── Nav group label ────────────────────────────────── */}
         {!collapsed && (
           <p className="text-[9px] font-semibold text-muted-foreground pt-4 px-4 mb-1">
             Quick access
           </p>
         )}
 
-        {/* ── Nav items ─────────────────────────────────────── */}
-        <nav className="flex flex-col gap-0.5 px-2.5">
+        <nav className="flex flex-col gap-0.5 px-1.5 ml-2">
           {navItems.map((item) => {
             const isActive = activeTab === item.tab && item.id !== "analytics";
-            // analytics links to overall as secondary entry
             const effectiveActive =
               item.id === "analytics"
                 ? false
@@ -248,7 +237,7 @@ export default function Sidebar({
                   ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
                   ${
                     effectiveActive
-                      ? "bg-[#4e5e5e] brightness-115 text-foreground"
+                      ? "bg-[#e5e0dc] dark:bg-[#4e5e5e] brightness-115 text-foreground"
                       : "text-foreground hover:bg-card/60 hover:text-foreground"
                   }
                 `}
@@ -260,13 +249,10 @@ export default function Sidebar({
           })}
         </nav>
 
-        {/* ── Separator ─────────────────────────────────────── */}
         <div className="mx-3 my-3 border-t border-border/60" />
 
-        {/* ── Bottom actions ────────────────────────────────── */}
         <div className={`flex flex-col gap-0.5 px-2.5 mt-auto pb-1`}>
 
-          {/* Get Data */}
           <button
             onClick={() => setUploadModalOpen(true)}
             title={collapsed ? "Get Data" : undefined}
@@ -280,7 +266,6 @@ export default function Sidebar({
             {!collapsed && <span>Get Data</span>}
           </button>
 
-          {/* Export Results */}
           <button
             onClick={handleExport}
             disabled={exporting}
@@ -296,7 +281,6 @@ export default function Sidebar({
             {!collapsed && <span>{exporting ? "Exporting…" : "Export Results"}</span>}
           </button>
 
-          {/* Theme toggle */}
           <button
             onClick={toggleTheme}
             title={collapsed ? (theme === "dark" ? "Light Mode" : "Dark Mode") : undefined}
@@ -317,22 +301,20 @@ export default function Sidebar({
           </button>
         </div>
 
-        {/* ── Account selector ──────────────────────────────── */}
         <div className="relative px-2 pb-3 pt-4" ref={dropdownRef}>
           <button
             onClick={() => setAccountOpen((v) => !v)}
             title={collapsed ? "Admin" : undefined}
             className={`
-              w-full flex items-center gap-2.5 rounded-lg border bg-[#1f2d2d] border-[#5e6e6e] hover:bg-muted/60 transition-all duration-150 cursor-pointer
+              w-full flex items-center gap-2.5 rounded-lg border bg-[#fdfcfc] dark:bg-[#1f2d2d] border-[#cfc6bf] dark:border-[#5e6e6e] transition-all duration-150 cursor-pointer
               ${collapsed ? "justify-center px-0 py-2" : "px-3 py-2"}
             `}
           >
-            {/* Avatar */}
             
             {!collapsed && (
               <div className="flex w-full items-center gap-2.5 hover:bg-card/60 p-1 rounded-lg">
-                <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-                  <IconShield className="w-3.5 h-3.5 text-primary-foreground" />
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <img className="w-full h-full rounded-lg text-primary-foreground" src="/minimalist-pfp.webp" alt="Profile" />
                 </div>
                 <div className="flex-1 text-left min-w-0">
                   <p className="text-xs font-semibold text-foreground leading-none truncate">
@@ -347,11 +329,10 @@ export default function Sidebar({
             )}
           </button>
 
-          {/* Dropdown */}
           {accountOpen && (
             <div
               className={`
-                absolute bottom-full mb-1 z-50 bg-card/20 border border-bdr-accent shadow-lg rounded-xl overflow-hidden
+                absolute bottom-full mb-1 z-50 bg-[#fdfcfc] dark:bg-[#1f2d2d] border border-[#cfc6bf] dark:border-[#5e6e6e] shadow-lg rounded-xl overflow-hidden
                 ${collapsed ? "left-full ml-2 w-40" : "left-2 right-2"}
               `}
             >
@@ -370,7 +351,6 @@ export default function Sidebar({
         </div>
       </aside>
 
-      {/* Upload modal (controlled here, re-used from existing component) */}
       <UploadModal
         isOpen={uploadModalOpen}
         onClose={() => setUploadModalOpen(false)}

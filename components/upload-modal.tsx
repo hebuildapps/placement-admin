@@ -79,7 +79,6 @@ export default function UploadModal({
           description: `Uploaded ${file.name} - ${parsedData.companyData.length} companies found`,
         });
 
-        // Reset after 2 seconds
         setTimeout(() => {
           onUploadSuccess(parsedData);
           setUploading(false);
@@ -126,7 +125,6 @@ export default function UploadModal({
             </DialogDescription>
           </div>
           <div className="space-y-4">
-            {/* Drop Zone */}
             <div
               {...getRootProps()}
               className={`border-2 bg-white border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
@@ -155,7 +153,6 @@ export default function UploadModal({
               </div>
             </div>
 
-            {/* Progress Bar */}
             {uploading && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -170,7 +167,6 @@ export default function UploadModal({
               </div>
             )}
 
-            {/* Status Messages */}
             {uploadStatus === "success" && (
               <div className="flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-lg">
                 <CheckCircle className="w-5 h-5" />
@@ -190,7 +186,6 @@ export default function UploadModal({
               </div>
             )}
 
-            {/* Action Buttons */}
             <div className="flex gap-3 pt-2">
               <Button
                 variant="outline"

@@ -24,7 +24,6 @@ import {
 } from "@/lib/data";
 import type { ParsedPlacementData } from "@/app/actions/parse-file";
 
-// ─── Phosphor icons ─────────────────────────────────────────────────────────
 function IconTrendUp({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 256 256" fill="currentColor">
@@ -65,7 +64,6 @@ function IconBuilding({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 interface KpiCardProps {
   title: string;
   value: string | number;
@@ -80,12 +78,12 @@ function KpiCard({ title, value, delta, trend, icon, accentClass }: KpiCardProps
     <div className="bg-card border border-border/50 rounded-xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-border transition-all duration-200">
       <div className="flex items-start justify-between">
         <div
-          className={`w-9 h-9 rounded-lg flex items-center justify-center ${accentClass}`}
+          className={`w-9 h-9 rounded-lg bg-[#fdfcfc] flex items-center justify-center ${accentClass}`}
         >
           {icon}
         </div>
         {trend === "up" && delta && (
-          <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-0.5 rounded-full">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-slate-50 dark:bg-emerald-950/30 px-2 py-0.5 rounded-full">
             <IconTrendUp className="w-3 h-3" />
             {delta}
           </span>
@@ -99,7 +97,6 @@ function KpiCard({ title, value, delta, trend, icon, accentClass }: KpiCardProps
   );
 }
 
-// ─── Custom tooltip ─────────────────────────────────────────────────────────
 function ChartTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
@@ -114,7 +111,6 @@ function ChartTooltip({ active, payload, label }: any) {
   );
 }
 
-// ─── KPI accent colours (design-token safe) ─────────────────────────────────
 const kpiAccents = [
   "bg-primary/10 text-primary",
   "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400",
@@ -129,10 +125,8 @@ const kpiIcons = [
   <IconBuilding className="w-4 h-4" />,
 ];
 
-// Bar chart fill that respects dark/light without hardcoded black
 const BAR_FILL = "hsl(var(--primary))";
 
-// Richer palette for pie/donut
 const PIE_PALETTE = [
   "hsl(var(--primary))",
   "hsl(210 60% 55%)",
@@ -142,7 +136,6 @@ const PIE_PALETTE = [
   "hsl(0 65% 55%)",
 ];
 
-// ─── Main component ──────────────────────────────────────────────────────────
 interface OverallViewProps {
   data: ParsedPlacementData | null;
 }
@@ -156,7 +149,6 @@ export default function OverallView({ data }: OverallViewProps) {
 
   return (
     <div className="space-y-6">
-      {/* ── KPI Cards ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiData.map((kpi, idx) => (
           <KpiCard
@@ -171,9 +163,7 @@ export default function OverallView({ data }: OverallViewProps) {
         ))}
       </div>
 
-      {/* ── Charts row ────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* Company placements — themed bar chart */}
         <div className="bg-card border border-border/50 rounded-xl p-5">
           <div className="mb-4">
             <h3 className="text-sm font-semibold text-foreground">Top Recruiting Companies</h3>
@@ -200,7 +190,6 @@ export default function OverallView({ data }: OverallViewProps) {
           </ResponsiveContainer>
         </div>
 
-        {/* Salary distribution — donut */}
         <div className="bg-card border border-border/50 rounded-xl p-5">
           <div className="mb-4">
             <h3 className="text-sm font-semibold text-foreground">Salary Distribution</h3>
@@ -235,9 +224,7 @@ export default function OverallView({ data }: OverallViewProps) {
         </div>
       </div>
 
-      {/* ── Branch & Recruiters ───────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* Placement by branch — progress bars */}
         <div className="bg-card border border-border/50 rounded-xl p-5">
           <div className="mb-4">
             <h3 className="text-sm font-semibold text-foreground">Placement by Branch</h3>
@@ -276,7 +263,6 @@ export default function OverallView({ data }: OverallViewProps) {
           </div>
         </div>
 
-        {/* Top recruiters */}
         <div className="bg-card border border-border/50 rounded-xl p-5">
           <div className="mb-4">
             <h3 className="text-sm font-semibold text-foreground">Top 5 Recruiters</h3>

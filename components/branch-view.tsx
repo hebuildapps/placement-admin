@@ -15,7 +15,6 @@ interface BranchViewProps {
   data: ParsedPlacementData | null;
 }
 
-// Custom tooltip
 function ChartTooltip({ active, payload }: any) {
   if (!active || !payload?.length) return null;
   return (
@@ -43,7 +42,6 @@ export default function BranchView({ data }: BranchViewProps) {
 
   return (
     <div className="space-y-5">
-      {/* ── Donut chart card ──────────────────────────────────────── */}
       <div className="bg-card border border-border/50 rounded-xl p-5">
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-foreground">
@@ -78,7 +76,6 @@ export default function BranchView({ data }: BranchViewProps) {
             </PieChart>
           </ResponsiveContainer>
 
-          {/* Centre overlay */}
           <div className="absolute flex flex-col items-center justify-center pointer-events-none" style={{ top: "46%", transform: "translateY(-50%)" }}>
             <p className="text-3xl font-bold text-foreground tabular-nums leading-none">
               {totalSelections}
@@ -88,7 +85,6 @@ export default function BranchView({ data }: BranchViewProps) {
         </div>
       </div>
 
-      {/* ── Branch detail grid ────────────────────────────────────── */}
       <div className="bg-card border border-border/50 rounded-xl p-5">
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-foreground">Branch Details</h3>

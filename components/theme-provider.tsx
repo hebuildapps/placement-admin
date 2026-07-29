@@ -21,7 +21,6 @@ export function useTheme() {
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
 
-  // On mount, read preference from localStorage or system
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null;
     if (stored === "dark" || stored === "light") {
@@ -31,7 +30,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Apply class to <html> whenever theme changes
   useEffect(() => {
     const root = document.documentElement;
     if (theme === "dark") {
