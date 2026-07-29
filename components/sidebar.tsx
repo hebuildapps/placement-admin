@@ -208,7 +208,7 @@ export default function Sidebar({
         >
           <div className="w-7 h-7 rounded-lg bg-transparent flex items-center justify-center flex-shrink-0">
             <svg
-              className="w-4 h-4 text-primary-foreground"
+              className="w-4 h-4 text-foreground"
               viewBox="0 0 256 256"
               fill="currentColor"
             >
@@ -224,7 +224,7 @@ export default function Sidebar({
 
         {/* ── Nav group label ────────────────────────────────── */}
         {!collapsed && (
-          <p className="text-[6px] font-semibold uppercase tracking-widest text-muted-foreground px-4 mb-1">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground pt-4 px-4 mb-1">
             Quick access
           </p>
         )}
@@ -253,8 +253,8 @@ export default function Sidebar({
                   }
                 `}
               >
-                <span className="flex-shrink-0 text-[8px]">{item.icon}</span>
-                {!collapsed && <span className="text-[8px]">{item.label}</span>}
+                <span className="flex-shrink-0 text-xs">{item.icon}</span>
+                {!collapsed && <span className="text-xs">{item.label}</span>}
               </button>
             );
           })}
@@ -271,7 +271,7 @@ export default function Sidebar({
             onClick={() => setUploadModalOpen(true)}
             title={collapsed ? "Get Data" : undefined}
             className={`
-              flex items-center gap-3 rounded-lg text-[8px] font-medium text-muted-foreground
+              flex items-center gap-3 rounded-lg text-xs font-medium text-muted-foreground
               hover:bg-muted/60 hover:text-foreground transition-all duration-150 cursor-pointer
               ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
             `}
@@ -286,7 +286,7 @@ export default function Sidebar({
             disabled={exporting}
             title={collapsed ? "Export Results" : undefined}
             className={`
-              flex items-center gap-3 rounded-lg text-[8px] font-medium text-muted-foreground
+              flex items-center gap-3 rounded-lg text-xs font-medium text-muted-foreground
               hover:bg-muted/60 hover:text-foreground transition-all duration-150 cursor-pointer
               disabled:opacity-50 disabled:cursor-not-allowed
               ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
@@ -301,7 +301,7 @@ export default function Sidebar({
             onClick={toggleTheme}
             title={collapsed ? (theme === "dark" ? "Light Mode" : "Dark Mode") : undefined}
             className={`
-              flex items-center gap-3 rounded-lg text-[8px] font-medium text-muted-foreground
+              flex items-center gap-3 rounded-lg text-xs font-medium text-muted-foreground
               hover:bg-muted/60 hover:text-foreground transition-all duration-150 cursor-pointer
               ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
             `}
@@ -333,7 +333,7 @@ export default function Sidebar({
             {/* Avatar */}
             
             {!collapsed && (
-              <div className="hover:bg-card/60 p-1 rounded-lg">
+              <div className="flex w-full items-center gap-2.5 hover:bg-card/60 p-1 rounded-lg">
                 <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
                   <IconShield className="w-3.5 h-3.5 text-primary-foreground" />
                 </div>
