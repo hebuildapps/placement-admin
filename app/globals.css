@@ -15,7 +15,7 @@
     --secondary: 35 100% 8% / 0.1;
     --secondary-foreground: 35 100% 8%;
     --muted: 54 15% 92%;
-    --muted-foreground: 240.08 5.71% 64.3%;
+    --muted-foreground: 35 30% 40%;
     --border: 54 15% 75%;
     --input: 54 15% 75% / 0.4;
     --ring: 64 54% 25% / 0.5;
@@ -51,12 +51,10 @@ html {
 }
 
 body {
-    @apply min-h-screen bg-background text-foreground antialiased font-sans;
-    background-image:
-        radial-gradient(circle at top left, hsl(var(--primary) / 0.08), transparent 32rem),
-        linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.55));
+    @apply min-h-screen bg-background text-foreground antialiased font-lexend;
 }
 
+/* ── Link defaults ─────────────────────────────────────────────── */
 a {
     @apply text-foreground underline-offset-4 transition-colors hover:text-primary;
 }
@@ -65,7 +63,30 @@ a {
     @apply max-w-7xl mx-auto px-4;
 }
 
+/* ── Recharts text inherits theme ──────────────────────────────── */
 .recharts-wrapper text {
     fill: hsl(var(--muted-foreground));
-    font-family: Inconsolata, monospace;
+    font-family: var(--font-lexend), sans-serif;
+    font-size: 11px;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+    stroke: hsl(var(--border) / 0.5);
+}
+
+/* ── Scrollbar styling ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
 }

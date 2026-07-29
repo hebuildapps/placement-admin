@@ -3,6 +3,7 @@ import "./globals.css";
 import React from "react";
 import { Toaster } from "sonner";
 import { Lexend, Geist, Lora } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -20,7 +21,7 @@ const lora = Lora({
 });
 
 export const metadata = {
-  title: "Placements Dashboard",
+  title: "PlacementLog — Dashboard",
   description: "Admin placement-tracking & visualization dashboard",
 };
 
@@ -32,8 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lexend.variable} ${geist.variable} ${lora.variable} font-lexend`}>
-        {children}
-        <Toaster position="top-right" />
+        <ThemeProvider>
+          {children}
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );
