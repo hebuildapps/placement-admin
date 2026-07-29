@@ -46,7 +46,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
       <form
         onSubmit={handleSubmit}
-        className="rounded-lg bg-card p-5"
+        className="rounded-lg p-5"
       >
         <FieldGroup>
           <Field>
@@ -102,10 +102,10 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
           onClick={() => router.push("/dashboard")}
           className="group relative inline-flex items-center pr-4 text-xs font-medium text-muted-foreground transition-all duration-200"
         >
-          Need quick access?
+          Want to check demo?
 
           <span className="ml-1 underline underline-offset-[3px] decoration-[2px] decoration-emerald-400 decoration-opacity-60 transition-all duration-200 group-hover:brightness-125 group-hover:decoration-opacity-100">
-            access
+            access it
           </span>
 
           <svg

@@ -64,7 +64,7 @@ export const salaryData: SalaryData[] = [
 
 // Branch-wise placement (colorful)
 export const branchData: BranchData[] = [
-  { name: "BBS", value: 16, fill: "#8B5CF6" },
+  { name: "BBA", value: 16, fill: "#8B5CF6" },
   { name: "CSE", value: 245, fill: "#3B82F6" },
   { name: "ECE", value: 189, fill: "#06B6D4" },
   { name: "EEE", value: 156, fill: "#10B981" },

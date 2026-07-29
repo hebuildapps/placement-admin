@@ -69,7 +69,7 @@ export default function PlacementStats() {
       {/* ── Main area ────────────────────────────────────────────── */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Inner scrollable content with padding */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-5">
+        <div className="flex-1 overflow-y-auto p-3.5 pl-0 md:p-3.5">
           {/* Rounded main content shell */}
           <div className="min-h-full rounded-2xl bg-card border border-border/50 shadow-sm flex flex-col">
 

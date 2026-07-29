@@ -196,9 +196,9 @@ export default function Sidebar({
     <>
       <aside
         className={`
-          flex flex-col h-screen border-r border-border bg-card
+          flex flex-col h-screen border-r border-border bg-background
           transition-all duration-300 ease-in-out flex-shrink-0
-          ${collapsed ? "w-[64px]" : "w-[220px]"}
+          ${collapsed ? "w-[64px]" : "w-[230px]"}
         `}
       >
         {/* ── Logo ──────────────────────────────────────────── */}
@@ -247,8 +247,8 @@ export default function Sidebar({
                   ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
                   ${
                     effectiveActive
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      ? "bg-card/60 text-foreground"
+                      : "text-foreground hover:bg-card/60 hover:text-foreground"
                   }
                 `}
               >
@@ -325,26 +325,26 @@ export default function Sidebar({
             onClick={() => setAccountOpen((v) => !v)}
             title={collapsed ? "Admin" : undefined}
             className={`
-              w-full flex items-center gap-2.5 rounded-lg hover:bg-muted/60 transition-all duration-150 cursor-pointer
+              w-full flex items-center gap-2.5 rounded-lg border border-border hover:bg-muted/60 transition-all duration-150 cursor-pointer
               ${collapsed ? "justify-center px-0 py-2" : "px-3 py-2"}
             `}
           >
             {/* Avatar */}
-            <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
               <IconShield className="w-3.5 h-3.5 text-primary-foreground" />
             </div>
             {!collapsed && (
-              <>
+              <div className="hover:bg-card/60 p-1 rounded-lg">
                 <div className="flex-1 text-left min-w-0">
                   <p className="text-xs font-semibold text-foreground leading-none truncate">
                     Admin
                   </p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5 truncate">
+                  <p className="text-[10px] text-foreground mt-0.5 truncate">
                     admin@placementlog.dev
                   </p>
                 </div>
-                <IconCaretUpDown className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
-              </>
+                <IconCaretUpDown className="w-3.5 h-3.5 text-foreground flex-shrink-0" />
+              </div>
             )}
           </button>
 
