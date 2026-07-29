@@ -1,19 +1,27 @@
-import { GalleryVerticalEnd } from "lucide-react"
-
-import { LoginForm } from "@/components/login-form"
+import { LoginForm } from "@/components/login-form";
 
 export default function LoginPage() {
   return (
-    <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-      <div className="flex w-full max-w-sm flex-col gap-6">
-        <a href="#" className="flex items-center gap-2 self-center font-medium">
-          <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-            <GalleryVerticalEnd className="size-4" />
-          </div>
-          Acme Inc.
-        </a>
+    <div className="grid min-h-screen bg-background lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)]">
+      <section className="relative hidden overflow-hidden bg-primary lg:block">
+        <img
+          src="/generated-image.png"
+          alt="Placement dashboard preview"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/55 via-primary/15 to-background/35" />
+        <div className="absolute inset-x-8 bottom-8 rounded-lg border border-primary-foreground/20 bg-background/85 p-5 text-foreground shadow-[0_18px_48px_rgba(0,0,0,0.18)] backdrop-blur">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            MIT-WPU placements
+          </p>
+          <p className="mt-2 text-2xl font-semibold">
+            Upload, inspect, and export placement results with less friction.
+          </p>
+        </div>
+      </section>
+      <section className="flex items-center justify-center px-6 py-10 sm:px-10 lg:px-16">
         <LoginForm />
-      </div>
+      </section>
     </div>
-  )
+  );
 }

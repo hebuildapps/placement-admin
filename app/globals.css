@@ -2,27 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Basic app-wide styles */
 :root {
-    --bg: #0f172a;
-    --card: #0b1220;
-    --muted: #94a3b8;
+    --background: 22 100% 98%;
+    --foreground: 35 100% 8%;
+    --card: 22 60% 96%;
+    --card-foreground: 35 100% 8%;
+    --card-muted: 54 15% 92%;
+    --card-subtle: 54 15% 88%;
+    --card-strong: 54 15% 82%;
+    --primary: 72 31% 18%;
+    --primary-foreground: 22 100% 98%;
+    --secondary: 35 100% 8% / 0.1;
+    --secondary-foreground: 35 100% 8%;
+    --muted: 54 15% 92%;
+    --muted-foreground: 240.08 5.71% 64.3%;
+    --border: 54 15% 75%;
+    --input: 54 15% 75% / 0.4;
+    --ring: 64 54% 25% / 0.5;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 22 100% 98%;
+    --accent: 54 15% 88%;
+    --accent-foreground: 35 100% 8%;
 }
 
-html,
-body,
-#__next {
-    height: 100%;
+.dark {
+    --background: 180 6% 17%;
+    --foreground: 30 3% 76%;
+    --card: 180 8% 22%;
+    --card-foreground: 30 3% 76%;
+    --card-muted: 180 8% 26%;
+    --card-subtle: 180 8% 30%;
+    --card-strong: 180 8% 34%;
+    --primary: 30 3% 76%;
+    --primary-foreground: 180 6% 17%;
+    --secondary: 180 8% 22% / 0.1;
+    --secondary-foreground: 30 3% 76%;
+    --muted: 180 8% 20%;
+    --muted-foreground: 30 3% 55%;
+    --border: 180 8% 30%;
+    --input: 180 8% 25% / 0.4;
+    --ring: 30 3% 65% / 0.5;
+    --accent: 180 8% 30%;
+    --accent-foreground: 30 3% 76%;
+}
+
+html {
+    min-height: 100%;
 }
 
 body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply min-h-screen bg-background text-foreground antialiased font-sans;
+    background-image:
+        radial-gradient(circle at top left, hsl(var(--primary) / 0.08), transparent 32rem),
+        linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.55));
 }
 
 a {
-    @apply text-sky-600 hover:underline
+    @apply text-foreground underline-offset-4 transition-colors hover:text-primary;
 }
 
 .container {
-    @apply max-w-4xl mx-auto px-4;
+    @apply max-w-7xl mx-auto px-4;
+}
+
+.recharts-wrapper text {
+    fill: hsl(var(--muted-foreground));
+    font-family: Inconsolata, monospace;
 }
