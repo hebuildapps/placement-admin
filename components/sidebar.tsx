@@ -196,7 +196,7 @@ export default function Sidebar({
     <>
       <aside
         className={`
-          flex flex-col h-screen border-r border-r-transparent bg-background
+          flex flex-col h-screen border-r border-r-transparent bg-background pr-3
           transition-all duration-300 ease-in-out flex-shrink-0
           hover:border-r-border
           ${collapsed ? "w-[64px]" : "w-[260px]"}
@@ -204,7 +204,7 @@ export default function Sidebar({
       >
         {/* ── Logo ──────────────────────────────────────────── */}
         <div
-          className={`flex items-center gap-2.5 rounded-lg border border-card border-brightness-125 px-4 py-4 mb-1 ${collapsed ? "justify-center px-0" : ""}`}
+          className={`flex items-center gap-2.5 rounded-lg border border-border-accent/20 px-3 py-3 mb-4 ${collapsed ? "justify-center px-0" : ""}`}
         >
           <div className="w-7 h-7 rounded-lg bg-transparent flex items-center justify-center flex-shrink-0">
             <svg
@@ -248,7 +248,7 @@ export default function Sidebar({
                   ${collapsed ? "justify-center px-0 py-2.5 w-full" : "px-3 py-2"}
                   ${
                     effectiveActive
-                      ? "bg-card brightness-115 text-foreground"
+                      ? "bg-sidebar brightness-115 text-foreground"
                       : "text-foreground hover:bg-card/60 hover:text-foreground"
                   }
                 `}
@@ -326,7 +326,7 @@ export default function Sidebar({
             onClick={() => setAccountOpen((v) => !v)}
             title={collapsed ? "Admin" : undefined}
             className={`
-              w-full flex items-center gap-2.5 rounded-lg border border-border border-brightness-125 hover:bg-muted/60 transition-all duration-150 cursor-pointer
+              w-full flex items-center gap-2.5 rounded-lg border border-border-accent border-brightness-125 hover:bg-muted/60 transition-all duration-150 cursor-pointer
               ${collapsed ? "justify-center px-0 py-2" : "px-3 py-2"}
             `}
           >
@@ -354,7 +354,7 @@ export default function Sidebar({
           {accountOpen && (
             <div
               className={`
-                absolute bottom-full mb-1 z-50 bg-card border border-border shadow-lg rounded-xl overflow-hidden
+                absolute bottom-full mb-1 z-50 bg-card/20 border border-border-accent shadow-lg rounded-xl overflow-hidden
                 ${collapsed ? "left-full ml-2 w-40" : "left-2 right-2"}
               `}
             >
