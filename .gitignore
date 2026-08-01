@@ -9,6 +9,8 @@
 !.yarn/versions
 /coverage
 
+/.md
+
 # next.js
 /.next/
 /out/
