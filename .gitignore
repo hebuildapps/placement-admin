@@ -9,8 +9,15 @@
 !.yarn/versions
 /coverage
 
-/.md
+# private notes & docs
+local-notes/
+*.md
+!README.md
 
+# large media
+demo-video.mp4
+
+.commandcode
 # next.js
 /.next/
 /out/
